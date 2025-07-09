@@ -10,24 +10,19 @@
     <Snippet>
       <Code Language="csharp">
         <![CDATA[
-            string a1 = "I am ";
-            string a2 = "Fantastic ";
-            string a3 = "Four";
-            string sentence = string.Concat(a1,a2,a3);
-            Console.WriteLine("{0}",sentence);
-            //C++ Strcat
-            char str[100] = "";
-			char buf[20];
-
-			sprintf(buf, "%u", current_status.battery_level_status);
-			strcat(str, buf);
-			sprintf(buf, "%u", current_fault_code);
-			strcat(str, buf);
-            //Python
-            a = "Hello"
-            b = "World"
-            result = a + b
-            print(result)  # HelloWorld            
+            string a1 = "abcde";
+            string a2 = "12345";
+          
+            Console.WriteLine(string.Concat(a1, a2));
+            //Result: abcde12345
+            //========================================
+            //C++
+            //Strcat
+            <!-- uint8_t data[3] = {0x01, 0x34, 0x12};
+            uint32_t combined_value = data[0] | (data[1] << 8) | (data[2] << 16);
+            current_status.combined_data[0] = combined_value & 0xFF;
+            current_status.combined_data[1] = (combined_value >> 8) & 0xFF;
+            current_status.combined_data[2] = (combined_value >> 16) & 0xFF; -->        
         ]]>
       </Code>
     </Snippet>
