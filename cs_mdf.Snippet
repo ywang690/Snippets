@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Concat</Title>
+      <Shortcut>Concat</Shortcut>
+      <Description>建立一個基本的 Concat</Description>
+      <Author>James Wang</Author>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[
+         //using System.Data.SqlClient;
+
+            string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;
+                            AttachDbFilename=D:\!Platform\AutoFW\WPF\WPFApp5\WPFApp5\WPFApp5\Database1.mdf;
+                            Integrated Security=True;
+                            Connect Timeout=30";
+            string query = "SELECT Id, Name FROM dbo.YourTableName";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    // 建立 SQL 指令
+                    SqlCommand cmd = new SqlCommand("SELECT TABLE_SCHEMA, TABLE_NAME FROM INFORMATION_SCHEMA.TABLES", conn);
+
+                    // 執行查詢
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Console.WriteLine($"{reader[0]}.{reader[1]}");
+                        MessageBox.Show($"{reader[0]}.{reader[1]}");
+                    }
+
+                    reader.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                }
+            }    
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
