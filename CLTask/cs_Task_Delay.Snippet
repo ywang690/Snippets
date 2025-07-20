@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Task Delay</Title>
+      <Shortcut>Task Delay</Shortcut>
+      <Description>建立一個基本的Task Delay</Description>
+      <Author>James Wang</Author>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[
+          var t = Task.Run(async delegate
+                  {
+                    await Task.Delay(1000);
+                    return 42;
+                  });
+          t.Wait();
+          Console.WriteLine("Task t Status: {0}, Result: {1}",
+                            t.Status, t.Result);
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
