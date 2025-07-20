@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>List Contains</Title>
+      <Shortcut>List Contains</Shortcut>
+      <Description>建立一個基本的List Contains</Description>
+      <Author>James Wang</Author>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[
+        List<Cube> cubes = new List<Cube>();
+
+        cubes.Add(new Cube(8, 8, 4));
+        cubes.Add(new Cube(8, 4, 8));
+        cubes.Add(new Cube(8, 6, 4));
+
+        if (cubes.Contains(new Cube(8, 6, 4))) {
+            Console.WriteLine("An equal cube is already in the collection.");
+        }
+        else {
+            Console.WriteLine("Cube can be added.");
+        }
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
