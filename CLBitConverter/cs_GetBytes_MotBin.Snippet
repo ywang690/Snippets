@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>cs_GetBytes</Title>
+      <Shortcut>cs_GetBytes</Shortcut>
+      <Description>建立一個基本的GetBytes</Description>
+      <Author>James Wang</Author>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[
+            string FW = "2211";  //1122
+            string SUBFW = "33";
+            string HW = "44";
+            byte[] _fw = BitConverter.GetBytes(Convert.ToUInt16(FW, 16));
+            byte[] _subFW = BitConverter.GetBytes(Convert.ToUInt16(SUBFW, 16));
+            byte[] _hw = BitConverter.GetBytes(Convert.ToUInt16(HW, 16));
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

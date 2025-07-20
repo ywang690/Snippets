@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>cs_DoubleToInt64Bits</Title>
+      <Shortcut>cs_DoubleToInt64Bits</Shortcut>
+      <Description>建立一個基本的DoubleToInt64Bits</Description>
+      <Author>James Wang</Author>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[
+        argument =  255.0 
+        long longValue;
+        longValue = BitConverter.DoubleToInt64Bits( argument );
+
+        // Display the resulting long in hexadecimal.
+        Console.WriteLine( formatter, argument, longValue );
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
