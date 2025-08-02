@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>MessageBox</Title>
+      <Shortcut>MessageBox</Shortcut>
+      <Description>建立一個基本的 MessageBox</Description>
+      <Author>James Wang</Author>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[
+            //
+                Message.Show("Hello");
+                //add title
+                Message.Show("Hello","Error");   
+                //Ok, Cancel buttons   
+                if(MessageBox.Show("Delete this user?","Confirm Message",MessageBoxButtons.OKCancel) ==DialogResult.OK)
+                {
+                    //delete
+                }
+                //Ok, Cancel buttons + Question Mark
+                if (MessageBox.Show("Delete this user?", "Confirm Message", MessageBoxButtons.OKCancel,MessageBoxIcon.Question) == DialogResult.OK)
+                {
+                    //delete
+                }        
+                // add help button
+                if (MessageBox.Show("Delete this user?", "Confirm Message", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2, MessageBoxOptions.RightAlign,true) == DialogResult.OK)
+                {
+                    //delete
+                }                              
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

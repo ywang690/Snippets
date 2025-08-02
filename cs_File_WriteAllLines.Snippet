@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>CS File.WriteAllLines</Title>
+      <Shortcut>CS File.WriteAllLines</Shortcut>
+      <Description>Dynapack</Description>
+      <Author>James Wang</Author>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[
+            //Function: List all File Names in Certain folder 
+            string path = @"c:\temp\MyTest.txt";
+
+            // This text is added only once to the file.
+            if (!File.Exists(path))
+            {
+                // Create a file to write to.
+                string[] createText = { "Hello", "And", "Welcome" };
+                File.WriteAllLines(path, createText, Encoding.UTF8);
+            }
+
+            // This text is always added, making the file longer over time
+            // if it is not deleted.
+            string appendText = "This is extra text" + Environment.NewLine;
+            File.AppendAllText(path, appendText, Encoding.UTF8);
+
+            // Open the file to read from.
+            string[] readText = File.ReadAllLines(path, Encoding.UTF8);
+            foreach (string s in readText)
+            {
+                Console.WriteLine(s);
+            }  
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

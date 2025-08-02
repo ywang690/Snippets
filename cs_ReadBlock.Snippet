@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>EVSW_ReadBlockUnsign32</Title>
+      <Shortcut>EVSW_ReadBlockUnsign32</Shortcut>
+      <Description>建立一個基本的 ReadBlockUnsign32</Description>
+      <Author>James Wang</Author>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[
+            string sReceiveData = "N/A";
+            byte[] iData = new byte[32] { 0x00,0x01,0x02,0x03,
+                                        0x04,0x05,0x06,0x07,
+                                        0x08,0x09,0x0A,0x0B,
+                                        0x0C,0x0D,0x0E,0x0F,
+                                         0x00,0x01,0x02,0x03,
+                                        0x04,0x05,0x06,0x07,
+                                        0x08,0x09,0x0A,0x0B,
+                                        0x0C,0x0D,0x0E,0x0F};
+            bool bResult = false;
+            //bResult = _m_DPUSBHID.USB_SBData_ReadBlock_PEC(15, Convert.ToByte(nCommand), 4, ref iData);
+
+            sReceiveData = BitConverter.ToUInt32(iData, 0).ToString();
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

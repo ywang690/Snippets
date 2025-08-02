@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>serialPort</Title>
+      <Shortcut>serialPort</Shortcut>
+      <Description>建立一個基本的 SerialPort</Description>
+      <Author>James Wang</Author>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[
+            // 要拉一個SerialPort
+             if (!serialPort.IsOpen)
+            { 
+                serialPort.PortName = comboBoxPorts.SelectedItem.ToString();
+                serialPort.BaudRate = 115200;
+                serialPort.Parity = Parity.None;
+                serialPort.DataBits = 8;
+                serialPort.StopBits = StopBits.One;
+                serialPort.DataReceived += serialPort1_DataReceived;
+                serialPort.Open();
+            }           
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

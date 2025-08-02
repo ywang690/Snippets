@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>CS oscilloscope</Title>
+      <Shortcut>CS oscilloscope</Shortcut>
+      <Description>Dynapack</Description>
+      <Author>James Wang</Author>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[
+            //Function: oscilloscope
+        private static VisaComInstrument myScope;
+        private string _doQuerycmd = "";
+        private string _docmd = "";
+        private string _fileInit = "";
+        private string _doQueryIEEEcmd = "";
+        class VisaComInstrument
+        {
+            #region VisaComInstrument
+            private ResourceManagerClass m_ResourceManager;
+            private FormattedIO488Class m_IoObject;
+            private string m_strVisaAddress;
+            private int m_nSession;
+            private int m_nResourceManager;
+
+            //Constructor
+            public VisaComInstrument(string strVisaAddress)
+            {
+                m_strVisaAddress = strVisaAddress;
+                OpenIO();
+                m_IoObject.IO.Clear();
+            }
+            public void DoCommand(string strCommand)
+            {
+                m_IoObject.WriteString(strCommand, true);
+                CheckInstrumentErrors(strCommand);
+            }
+
+            private void CheckInstrumentErrors(string strCommand)
+            {
+                string strInstrumentError;
+                bool bFirstError = true;
+                do
+                {
+                    m_IoObject.WriteString(":SYSTEM:ERRor?", true);
+                    strInstrumentError = m_IoObject.ReadString();
+                    if (!strInstrumentError.ToString().StartsWith("+0,"))
+                    {
+                        if (bFirstError)
+                        {
+                            Console.WriteLine("ERROR(s) for command '{0}': ", strCommand);
+                            bFirstError = false;
+                        }
+                    }
+                } while (!strInstrumentError.ToString().StartsWith("+0,"));
+
+            }
+
+
+            public string DoQueryString(string strQuery)
+            {
+                // Send the query.
+                m_IoObject.WriteString(strQuery, true);
+                // Get the result string.
+                string strResults;
+                strResults = m_IoObject.ReadString();
+                // Check for inst errors.
+                CheckInstrumentErrors(strQuery);
+                // Return results string.
+                return strResults;
+            }
+
+            private void OpenIO()
+            {
+                m_ResourceManager = new ResourceManagerClass();
+                m_IoObject = new FormattedIO488Class();
+                try
+                {
+                    m_IoObject.IO = (IMessage)m_ResourceManager.Open(m_strVisaAddress, AccessMode.NO_LOCK, 0, "");
+                }
+                catch (Exception e)
+                {
+                }
+            }
+
+            public byte[] DoQueryIEEEBlock(string strQuery)
+            {
+                // Send the query.
+                m_IoObject.WriteString(strQuery, true);
+                // Get the results array.
+                System.Threading.Thread.Sleep(2000); // Delay before reading.
+                byte[] ResultsArray;
+                ResultsArray = (byte[])m_IoObject.ReadIEEEBlock(
+                IEEEBinaryType.BinaryType_UI1, false, true);
+                // Check for inst errors.
+                CheckInstrumentErrors(strQuery);
+                // Return results array.
+                return ResultsArray;
+            }
+            #endregion VisaComInstrument
+        }
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

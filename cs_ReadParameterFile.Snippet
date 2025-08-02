@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Reading Parameter File</Title>
+      <Shortcut>Reading Parameter File</Shortcut>
+      <Description>建立一個基本的 Reading Parameter File</Description>
+      <Author>James Wang</Author>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[
+            //
+            StreamReader _reader = new StreamReader(Application.StartupPath + "\\" + "Config_MonitorESSModuleSBS.csv");
+            string _line = _reader.ReadLine();//標頭
+            string[] _tempArray = null;
+            int _count = 0;
+            while (!_reader.EndOfStream)
+            {
+                _tempArray = _reader.ReadLine().Split(',');
+                g_SBSData[_count].name = _tempArray[0];
+                g_SBSData[_count].command  = _tempArray[1];
+                if (g_SBSData[_count].command.ToUpper().StartsWith("0X"))
+                {
+                    g_SBSData[_count].command = g_SBSData[_count].command.Substring(2, g_SBSData[_count].command.Length - 2);
+                    g_isModuleHex = true;
+                }
+                   
+
+                g_SBSData[_count].dataLength = Convert.ToInt16(_tempArray[2]);
+                g_SBSData[_count].unit = _tempArray[3];
+                g_SBSData[_count].type = _tempArray[4];
+                _count++;
+            }                  
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

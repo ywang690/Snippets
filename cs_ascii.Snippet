@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Ascii</Title>
+      <Shortcut>Asciibasic</Shortcut>
+      <Description>建立一個基本的 ascii-Array</Description>
+      <Author>你的名字</Author>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[
+            ASCIIEncoding ascii = new ASCIIEncoding();
+            Byte[] bytes = ascii.GetBytes(asciihex.Text);
+
+            foreach (byte _data in bytes)
+            {
+                Console.WriteLine(_data);
+            }
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

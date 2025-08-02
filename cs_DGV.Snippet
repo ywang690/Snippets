@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>DataGridView</Title>
+      <Shortcut>dgv</Shortcut>
+      <Description>建立一個基本的 DataGridView</Description>
+      <Author>James Wang</Author>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[
+            DataGridView dgv = new DataGridView();
+            dgv.Columns.Add("id", "ID");
+            dgv.Columns.Add("name", "Name");
+            dgv.Dock = DockStyle.Fill;
+            this.Controls.Add(dgv);
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

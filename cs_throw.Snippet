@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>throw</Title>
+      <Shortcut>throw</Shortcut>
+      <Description>建立一個基本的throw</Description>
+      <Author>James Wang</Author>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[
+        if (shapeAmount <= 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(shapeAmount), "Amount of shapes must be positive.");
+        }
+        <!-- 在 throw e; 陳述式中，運算式 e 的結果必須隱含轉換成 System.Exception。
+        您可以使用內建例外狀況類別，例如 ArgumentOutOfRangeException 或 InvalidOperationException。 
+        .NET 也提供下列協助程式方法，以在特定情況下擲回例外狀況：ArgumentNullException.
+        ThrowIfNull 和 ArgumentException.ThrowIfNullOrEmpty。 您也可以定義衍生自 System.Exception 的自有例外狀況類別。 
+        如需詳細資訊，請參閱建立和擲回例外狀況。 -->
+
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

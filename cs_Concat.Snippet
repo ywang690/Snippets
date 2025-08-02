@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Concat</Title>
+      <Shortcut>Concat</Shortcut>
+      <Description>建立一個基本的 Concat</Description>
+      <Author>你的名字</Author>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[
+            string a1 = "I am ";
+            string a2 = "Fantastic ";
+            string a3 = "Four";
+            string sentence = string.Concat(a1,a2,a3);
+            Console.WriteLine("{0}",sentence);
+            //C++ Strcat
+            char str[100] = "";
+			char buf[20];
+
+			sprintf(buf, "%u", current_status.battery_level_status);
+			strcat(str, buf);
+			sprintf(buf, "%u", current_fault_code);
+			strcat(str, buf);
+            //Python
+            a = "Hello"
+            b = "World"
+            result = a + b
+            print(result)  # HelloWorld            
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

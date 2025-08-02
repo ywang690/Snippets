@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Encapsulation</Title>
+      <Shortcut>OOD-Encapsulation</Shortcut>
+      <Description>建立一個基本的 OOD-Encapsulation</Description>
+      <Author>James Wang</Author>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[
+            public class Dog : Animal
+            {
+                private int _age; // 封裝的欄位
+
+                public int Age
+                {
+                    get { return _age; }
+                    set
+                    {
+                        if (value >= 0)
+                            _age = value;
+                    }
+                }
+
+                public override void Speak()
+                {
+                    Console.WriteLine($"{Name} says: Woof!");
+                }
+            }
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>EVSW CSGasgauge_Add_CMD</Title>
+      <Shortcut>EVSW CSGasgauge_Add_CMD</Shortcut>
+      <Description>Dynapack</Description>
+      <Author>James Wang</Author>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[
+            //Function: CS_Gasgauge Add Commands       
+            //@ private void BuildCommands() 
+            Commands.Add(new MiddleCommand("System", "BCCGranted", (ref string msg) => SetGGMode("BCCGRANTED", ref msg)));    //BCC Granted
+            //@ public bool SetGGMode(string sMode, ref string sMsg)
+            //@ switch (sMode.ToUpper())
+            //
+                case "BCCGRANTED":    //BCCGranted
+                    #region Reset
+                    result = BCCGranted(ref sMsg);
+                    //dataRow = new byte[2] { 0x40, 0x40 };
+                    //if (this.WriteWord(0x40, dataRow))
+                    //    result = true;
+                    //else
+                    //    //sMsg = "write cmd 0x4040 fail";
+                    //    sMsg = "BCC Granted";
+                    //Console.WriteLine("BCC Granted");
+                    #endregion
+                    break;     
+            //@ buttom Add new API
+        bool BCCGranted(ref string errMsg)
+        {
+            byte[] iData = new byte[16];
+            byte[] Buf = new byte[1] { 0x01 };
+            string smsg = "";
+            bool bResult =false;
+
+            if (_dp2300.USB_SBData_ReadWord_PEC(15, 0x03, ref iData))
+            {
+                System.Threading.Thread.Sleep(3000);
+                iData[1] += 1;
+                if (_dp2300.USB_SBData_WriteWord(15, 0x03, iData) == true)
+                {
+                    //label13.Text = "Success...";
+                    //label13.BackColor = Color.Green;
+                    //bResult = true;
+                    bResult = true;
+                }
+            }
+            else
+            {
+                //label13.Text = smsg;
+                //label13.BackColor = Color.Red;
+                //bResult = false;
+                bResult = false;
+            }
+            //bool bResult = _dp2300.USB_SBData_WriteBlock_PEC(0x0F, 0x47, DataToWrite.Length, DataToWrite);
+            if (!bResult)
+                errMsg = "BCC Granted failed";
+            else
+                errMsg = "BCC Granted OK";
+            return bResult;
+        }                   
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>File System Watcher</Title>
+      <Shortcut>File System Watcher</Shortcut>
+      <Description>建立一個基本的 File System Watcher</Description>
+      <Author>James Wang</Author>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[
+            //需要從工具箱拉一個watch的物件
+            string _LogWatch = @"D:\Dynapack\";
+            var watcher = new FileSystemWatcher(_LogWatch);
+            watcher.NotifyFilter = NotifyFilters.Attributes
+             | NotifyFilters.CreationTime
+             | NotifyFilters.DirectoryName
+             | NotifyFilters.FileName
+             | NotifyFilters.LastAccess
+             | NotifyFilters.LastWrite
+             | NotifyFilters.Security
+             | NotifyFilters.Size;
+
+            watcher.Changed += watch_Changed;
+            watcher.Created += watch_Created;
+            watcher.Deleted += watch_Deleted;
+            watcher.Renamed += watch_Renamed;
+            watch.Filter = "*.log";
+            watch.Filter = "*.err";
+            watch.Filter = "*.csv";
+
+            watcher.EnableRaisingEvents = true;
+            //是否連子資料夾都要偵測
+            watcher.IncludeSubdirectories = true;
+            //新增時觸發事件
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>ArrayCopy</Title>
+      <Shortcut>ArrayCopy</Shortcut>
+      <Description>建立一個基本的 ArrayCopy</Description>
+      <Author>James Wang</Author>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[
+            byte[] _data = new byte[16] { 0xE8, 0x86, 0x00, 0x00, 0x7F, 0x03, 0x00, 0x00, 0x00, 0x00, 0x52, 0x50, 0x2D, 0x34, 0x38, 0x2D };
+            byte[] _add = new byte[4] { 0x11,0x22,0x33,0x44};
+            Array.Copy(_add, 0, _data, 3, 2);
+            //                        init,Length
+            //{ 0xE8, 0x86, 0x00, 0x22,0x33, 0x03, 0x00, 0x00, 0x00, 0x00, 0x52, 0x50, 0x2D, 0x34, 0x38, 0x2D };
+            //      
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

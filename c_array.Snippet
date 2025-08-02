@@ -1,0 +1,58 @@
+<CodeSnippet Format="1.0.0">
+  <Header>
+    <Title>c array</Title>
+    <Shortcut>c array</Shortcut>
+    <Description>My custom C++ function template</Description>
+    <Author>James Wang</Author>
+  </Header>
+  <Snippet>
+    <Declarations>
+      <Literal>
+        <ID>type</ID>
+        <Default>int</Default>
+      </Literal>
+      <Literal>
+        <ID>name</ID>
+        <Default>MyFunction</Default>
+      </Literal>
+    </Declarations>
+    <Code Language="CPP">
+      <![CDATA[
+#include <stdio.h>
+#define ROWS 2                                  
+#define COLS 3                                  
+//void sum_rows(double (*arr)[COLS], int rows);
+void sum_rows(double arr[][3], int rows);
+int main(void)
+{
+    double arr[2][3]= {                   
+           {1, 3, 5},
+           {2, 4, 4}
+    };
+    sum_rows(arr, 2);
+    double arr2[2+1][3]= {
+           {1, 3, 5},
+           {2, 4, 4},
+           {2, 4, 5}
+    };
+    sum_rows(arr2, 2+1);
+    return 0;
+}
+
+void sum_rows(double (*arr)[3], int rows)
+{
+    int r, c;
+    for(r=0; r<rows; r++)
+    {
+        double subtotal=0;
+        for(c=0; c<3; c++)
+            subtotal += arr[r][c];
+        printf("row %d average : %3.1f\n", r, subtotal/3);
+    }
+}
+
+
+      ]]>
+    </Code>
+  </Snippet>
+</CodeSnippet>

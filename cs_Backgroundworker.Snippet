@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Backgroundworker</Title>
+      <Shortcut>BGW</Shortcut>
+      <Description>建立一個基本的 Backgroundworker</Description>
+      <Author>James Wang</Author>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[
+            //Init BGW
+            _bw.DoWork += new DoWorkEventHandler(_bw_DoWork);
+            _bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(_bw_RunWorkerCompleted);
+            _bw.ProgressChanged += new ProgressChangedEventHandler(_bw_ProgressChanged);
+
+            //Set BGW
+            _bw.WorkerReportsProgress = true;
+            _bw.WorkerSupportsCancellation = true;         
+
+            //Start Counting
+                        if (_bw.IsBusy != true)
+                        {
+                            // Start the asynchronous operation.
+                            _bw.RunWorkerAsync();
+                        }
+            // _bw_DoWork
+                    if (worker.CancellationPending == true)
+                    {
+                        e.Cancel = true;
+                        break;
+                    }
+                    else
+                    {
+                        // Perform a time consuming operation and report progress.
+                        System.Threading.Thread.Sleep(500);
+                        worker.ReportProgress(i * 10);
+                    }
+            // _bw_ProgressChanged
+                   this.progressBar1.Value = e.ProgressPercentage;
+            // _bw_RunWorkerCompleted  
+            if (e.Cancelled == true)
+            {
+                //resultLabel.Text = "Canceled!";
+                //label1.Text = "Cancelled";
+            }
+            else if (e.Error != null)
+            {
+                //resultLabel.Text = "Error: " + e.Error.Message;
+            }
+            else
+            {
+                //resultLabel.Text = "Done!";
+                //label1.Text = "100%";
+            }                             
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

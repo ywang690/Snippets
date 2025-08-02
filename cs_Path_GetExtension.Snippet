@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Path GetExtension</Title>
+      <Shortcut>Path GetExtension</Shortcut>
+      <Description>建立一個基本的Path GetExtension</Description>
+      <Author>James Wang</Author>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[
+        string fileName = @"C:\mydir.old\myfile.ext";
+        string path = @"C:\mydir.old\";
+        string extension;
+
+        extension = Path.GetExtension(fileName);
+        Console.WriteLine("GetExtension('{0}') returns '{1}'",
+            fileName, extension);
+
+        extension = Path.GetExtension(path);
+        Console.WriteLine("GetExtension('{0}') returns '{1}'",
+            path, extension);
+
+        // This code produces output similar to the following:
+        //
+        // GetExtension('C:\mydir.old\myfile.ext') returns '.ext'
+        // GetExtension('C:\mydir.old\') returns ''     
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

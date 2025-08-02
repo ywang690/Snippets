@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>EVSW ReadWord</Title>
+      <Shortcut>EVSW ReadWord</Shortcut>
+      <Description>Dynapack</Description>
+      <Author>James Wang</Author>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[
+            //Function: EVSW ReadWord     
+        private bool ReadWord(byte adr, ref byte[] rBuf)
+        {
+            bool result = false;
+            for (int i = 0; i < 3; i++)
+            {
+                result= _dp2300.USB_SBData_ReadWord_PEC(15, adr, ref rBuf);
+                if (result == true)
+                    break;
+                else
+                    System.Threading.Thread.Sleep(20);
+            }
+            return result;
+        }                       
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

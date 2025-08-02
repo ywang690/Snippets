@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>CS FileNames</Title>
+      <Shortcut>CS FileNames</Shortcut>
+      <Description>Dynapack</Description>
+      <Author>James Wang</Author>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[
+            //Function: List all File Names in Certain folder 
+            string _SnippetPath = @"D:\!Platform\Snippet";
+            DirectoryInfo di = new DirectoryInfo(_SnippetPath);
+            foreach (var fi in di.GetFiles())
+            {
+                Console.WriteLine(fi.Name);
+            }   
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Python-CS</Title>
+      <Shortcut>PythonCS</Shortcut>
+      <Description>建立一個Python in C#</Description>
+      <Author>James Wang</Author>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[
+            //用途： 從 Winform 使用 Python 的功能
+            //Python 的程式要先在Anaconda Powershell Prompt 下: pyinstaller -F 檔名.py
+            //產生*.exe 之後再引用到下方的路徑
+        private void btnPy_Click(object sender, EventArgs e)
+        {
+            string _PythonPath = @"C:\Users\USER\dist\snippetsTest1.exe";
+            Calc(_PythonPath);
+        }
+
+        private string Calc(string inputString)
+        {
+            // 呼叫python指令碼
+            Process p = new Process();
+            p.StartInfo.FileName = inputString;
+            p.StartInfo.UseShellExecute = false;
+            p.StartInfo.RedirectStandardOutput = true;
+            p.StartInfo.RedirectStandardInput = true;
+            p.StartInfo.CreateNoWindow = true;
+            // 注意，這前面得有一個空格，不然就連在一起了
+            p.StartInfo.Arguments = " " + inputString;
+            p.Start();
+            string output = p.StandardOutput.ReadToEnd();
+            p.WaitForExit();
+            p.Close(); return output;
+        }
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

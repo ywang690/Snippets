@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Polymorphism</Title>
+      <Shortcut>OOD-Polymorphism</Shortcut>
+      <Description>建立一個基本的 OOD-Polymorphism</Description>
+      <Author>James Wang</Author>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[
+            class Program
+            {
+                static void Main(string[] args)
+                {
+                    List<Animal> animals = new List<Animal>();
+
+                    Dog dog = new Dog { Name = "Rex", Age = 5 };
+                    Cat cat = new Cat { Name = "Mimi" };
+
+                    animals.Add(dog);
+                    animals.Add(cat);
+
+                    foreach (Animal animal in animals)
+                    {
+                        animal.Speak(); // 根據不同子類顯示不同內容（多型）
+                    }
+                }
+            }
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

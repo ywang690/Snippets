@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>EVSW readonly</Title>
+      <Shortcut>EVSW readonly</Shortcut>
+      <Description>Dynapack</Description>
+      <Author>James Wang</Author>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[
+            //Function: EVSW Readonly struct     
+            public readonly struct Coords
+            {
+                public Coords(double x, double y)
+                {
+                    X = x;
+                    Y = y;
+                }
+
+                public double X { get; init; }
+                public double Y { get; init; }
+
+                public override string ToString() => $"({X}, {Y})";
+            }           
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

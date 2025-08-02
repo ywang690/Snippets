@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>EVSW SetIOMode</Title>
+      <Shortcut>EVSW SetIOMode</Shortcut>
+      <Description>Dynapack</Description>
+      <Author>James Wang</Author>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[
+            //Function: EVSW SetIOMode     
+        /* 設定為 Flash Update Mode (I/O Mode)
+         * buf[0] = 0x01
+         * buf[1] = 0x00
+         */
+        private bool SetIOMode(ref string m_errorMessage)
+        {
+            bool result = false;
+            byte[] buf = new byte[1];
+            byte count = 6;
+            frmProgressbar barProgress = new frmProgressbar();
+            int _progress = 0;
+            int _progressMax = 30;
+            do
+            {
+                barProgress.Show();
+                barProgress.Value = 0;
+                barProgress.Maximum = _progressMax;
+                barProgress.ProcessName = "set to I/O mode";
+                count--;
+                _progress++;
+                if (_progress < _progressMax)
+                    barProgress.Value = _progress;
+                count--;
+                if (count >= 0)    // 正常讀寫情況下最多執行3次
+                {
+                    result = ReadStatus(ref buf);
+                    if (result == true)
+                    {
+                        if (buf[0] == 0x01)
+                        {
+                            #region in Flash update mode
+                            if (buf[1] == 0x00) // IO Mode，狀態正常
+                                break;
+                            else
+                            {
+                                result = ClearStatus(); // IO Mode，但狀態顯示某些錯誤
+                                if (!result)
+                                    break;
+                            }
+                            #endregion
+                        }
+                        else if (buf[0] == 0x02)
+                        {
+                            #region in BL mode
+                            result = ChangeToIOByBlock();  // In BL mode, it only accesses write block protocol.
+                            if (!result)
+                                break;
+                            #endregion
+                        }
+                        else
+                        {
+                            #region maybe in AP mode
+                            double _v=0;
+                            string _s="";
+                            ReadVoltage(ref _v, ref _s);
+                            result = ChangeToIO();  // 目前為AP Mode，需切換成IO Mode by write word
+                            if (!result && count==0)
+                            {
+                                break;
+                            }
+                            #endregion
+                        }
+                    }
+
+                }
+                else
+                    result = false;
+            } while (count > 0);
+            barProgress.Value = _progressMax;
+            barProgress.Close();
+            barProgress.Dispose();
+            if (result)
+            {
+                if (buf[0] != 1)
+                {
+                    result = false;
+                    m_errorMessage = "fail to IO mode";
+                }
+            }
+            else
+                m_errorMessage = "communication fail";
+            return result;
+        }                 
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

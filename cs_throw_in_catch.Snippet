@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>throw in catch</Title>
+      <Shortcut>throw in catch</Shortcut>
+      <Description>建立一個基本的throw</Description>
+      <Author>James Wang</Author>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[
+        try
+        {
+            ProcessShapes(shapeAmount);
+        }
+        catch (Exception e)
+        {
+            LogError(e, "Shape processing failed.");
+            throw;
+        }
+        <!-- throw; 會保留例外狀況的原始堆疊追蹤，其儲存在 Exception.StackTrace 屬性中。 
+        相反地，throw e; 會更新 e 的 StackTrace 屬性。 -->
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

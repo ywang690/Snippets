@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>StreamReader</Title>
+      <Shortcut>StreamReader</Shortcut>
+      <Description>建立一個基本的StreamReader</Description>
+      <Author>James Wang</Author>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[
+        private void GetHostSBSConfigDataCount()
+        {
+            StreamReader _reader = new StreamReader(Application.StartupPath + "\\" + "Config_MonitorESSHostSBS.csv");
+            while (!_reader.EndOfStream)
+            {
+                _reader.ReadLine();
+                g_hostSbsCount++;
+            }
+            g_hostSbsCount = g_hostSbsCount - 1;//減去標頭
+            Array.Resize(ref g_HostSBSData , g_hostSbsCount);
+            _reader.Close();
+            _reader.Dispose();
+        }           
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

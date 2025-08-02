@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Abstraction</Title>
+      <Shortcut>OOD-Abstraction</Shortcut>
+      <Description>建立一個基本的 OOD-Abstraction</Description>
+      <Author>James Wang</Author>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[
+            // 抽象類別
+            public abstract class Animal
+            {
+                public string Name { get; set; }
+
+                // 抽象方法（子類要實作）
+                public abstract void Speak();
+            }
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

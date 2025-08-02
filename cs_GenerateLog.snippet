@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>GenerateLog</Title>
+      <Shortcut>GenerateLog</Shortcut>
+      <Description>建立一個基本的 GenerateLog</Description>
+      <Author>James Wang</Author>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[
+        private void GenerateLog(string sFilePath, string sLogData)
+        {
+            System.IO.FileStream fs = new System.IO.FileStream(sFilePath, FileMode.Append);
+            StreamWriter sw = new StreamWriter(fs);
+            try
+            {
+                sw.WriteLine(sLogData + "," + DateTime.Now.ToString("yyyy/MM/dd") + "," + DateTime.Now.ToString("hh:mm:ss"));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                sw.Close();
+                sw.Dispose();
+                fs.Dispose();
+            }
+        }
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>DirectoryInfo.MoveTo(String)</Title>
+      <Shortcut>DirectoryInfo.MoveTo(String)</Shortcut>
+      <Description>建立一個基本的DirectoryInfo.MoveTo(String)</Description>
+      <Author>James Wang</Author>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[
+            public static void Main()
+            {
+
+                // Make a reference to a directory.
+                DirectoryInfo di = new DirectoryInfo("TempDir");
+
+                // Create the directory only if it does not already exist.
+                if (di.Exists == false)
+                    di.Create();
+
+                // Create a subdirectory in the directory just created.
+                DirectoryInfo dis = di.CreateSubdirectory("SubDir");
+
+                // Move the main directory. Note that the contents move with the directory.
+                if (Directory.Exists("NewTempDir") == false)
+                    di.MoveTo("NewTempDir");
+
+                try
+                {
+                    // Attempt to delete the subdirectory. Note that because it has been
+                    // moved, an exception is thrown.
+                    dis.Delete(true);
+                }
+                catch (Exception)
+                {
+                    // Handle this exception in some way, such as with the following code:
+                    // Console.WriteLine("That directory does not exist.");
+                }
+
+                // Point the DirectoryInfo reference to the new directory.
+                //di = new DirectoryInfo("NewTempDir");
+
+                // Delete the directory.
+                //di.Delete(true);
+            }              
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

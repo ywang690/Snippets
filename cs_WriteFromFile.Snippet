@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>EVSW WriteFromFile</Title>
+      <Shortcut>EVSW WriteFromFile</Shortcut>
+      <Description>Dynapack</Description>
+      <Author>James Wang</Author>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[
+            //Function: EVSW Write From File     
+        private bool WriteFromFile(string section, string path, ref byte[] buf)
+        {
+            bool result = true;
+            string line;        // 讀取到的資料
+            string type;        // S2
+            uint count;         // 資料長度 (address + data + checksum )
+            uint adr;           // MCU 相對位置
+            uint adrEnd;        // 資料的最後位址
+            uint checksum = 0;  // 資料的檢查碼
+            uint sum;           // count, address, data (0xXX+0xXX+...)相加後取2的補數，須要等於checksum
+            bool _isFixData = false;
+            bool _isFW = false;
+            bool _isOwn = false;
+            bool _isFlexible = false;
+            System.IO.StreamReader file = new System.IO.StreamReader(path);
+            SetDefault(ref buf);
+            while (((line = file.ReadLine()) != null) & (result = true))
+            {
+                type = line.Substring(0, 2);
+                if (type == "S2")
+                {
+                    count = Convert.ToUInt32(line.Substring(2, 2), 16);
+                    sum = count;
+                    adr = Convert.ToUInt32(line.Substring(4, 6), 16);
+                    sum += ((adr >> 16) + ((adr >> 8) & 0xFF) + (adr & 0xFF));
+                    adrEnd = adr + (count - 4)-1;
+
+                    switch (section)
+                    {
+                        case "FW":
+                            if (adrEnd <= 0x00E7FF)
+                            {
+                                _isFW = true;
+                                DataToBuf(line, count, adr, ref sum, ref buf);
+                                checksum = Convert.ToUInt32(line.Substring(line.Length - 2, 2), 16);
+                                if (sum != checksum)
+                                    result = false;
+                                if (0 <= adrEnd && adrEnd <= 0x001FFF)
+                                {
+                                    g_updateBLflag = true;
+                                }
+                                else if (0x002000 <= adrEnd && adrEnd <= 0x00E7FF)
+                                {
+                                    g_updateAPflag = true;
+                                }
+                            }
+                            break;
+                        case "Own":
+                            if ((adr >= 0x0F1800) & (adrEnd <= 0x0F1BFF))
+                            {
+                                _isOwn = true;
+                                adr -= 0xF1800;
+                                DataToBuf(line, count, adr, ref sum, ref buf);
+                                checksum = Convert.ToUInt32(line.Substring(line.Length - 2, 2), 16);
+                                if (sum != checksum)
+                                    result = false;
+                            }
+                            break;
+                        case "Fixed":
+                            if ((adr >= g_fixedStartAddress) & (adrEnd <= g_fixedEndAddress))
+                            {
+                                _isFixData = true;
+                                adr -=  g_fixedStartAddress ;
+                                DataToBuf(line, count, adr, ref sum, ref buf);
+                                checksum = Convert.ToUInt32(line.Substring(line.Length - 2, 2), 16);
+                                if (sum != checksum)
+                                    result = false;
+                            }
+                            break;
+                        case "FLEXIBLE":
+                            if ((adr >= 0x0F1040) & (adrEnd <= 0x0F109F))
+                            {
+                                _isFlexible = true;
+                                adr -= 0x0F1040;
+                                DataToBuf(line, count, adr, ref sum, ref buf);
+                                checksum = Convert.ToUInt32(line.Substring(line.Length - 2, 2), 16);
+                                if (sum != checksum)
+                                    result = false;
+                            }
+                            break;
+                    }
+                }
+            }
+            file.Close();
+            return result & (_isFixData | _isFW | _isOwn | _isFlexible);
+        }                
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

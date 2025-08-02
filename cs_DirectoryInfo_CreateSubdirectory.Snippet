@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>DirectoryInfo CreateSubdirectory</Title>
+      <Shortcut>DirectoryInfo CreateSubdirectory</Shortcut>
+      <Description>建立一個基本的DirectoryInfo CreateSubdirectory</Description>
+      <Author>James Wang</Author>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[
+            public static void Main()
+            {
+                // Create a reference to a directory.
+                DirectoryInfo di = new DirectoryInfo("TempDir");
+
+                // Create the directory only if it does not already exist.
+                if (di.Exists == false)
+                    di.Create();
+
+                // Create a subdirectory in the directory just created.
+                DirectoryInfo dis = di.CreateSubdirectory("SubDir");
+
+                // Process that directory as required.
+                // ...
+
+                // Delete the subdirectory.
+                dis.Delete(true);
+
+                // Delete the directory.
+                di.Delete(true);
+            }       
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

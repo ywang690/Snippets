@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>CS Path GetFileName</Title>
+      <Shortcut>CS Path GetFileName</Shortcut>
+      <Description>Dynapack</Description>
+      <Author>James Wang</Author>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[
+            //Function: List all File Names in Certain folder 
+            string? filePath = @"C:\MyDir\MySubDir\myfile.ext";
+            string? directoryName;
+            int i = 0;
+
+            while (filePath != null)
+            {
+                directoryName = Path.GetDirectoryName(filePath);
+                Console.WriteLine($"GetDirectoryName(\"{filePath}\") returns {directoryName ?? "NULL"}");
+
+                filePath = (i == 1)
+                    ? directoryName + @"\"  // this will preserve the previous path
+                    : directoryName;
+
+                i++;
+            }
+            /*
+            This code produces the following output:
+
+            GetDirectoryName("C:\MyDir\MySubDir\myfile.ext") returns C:\MyDir\MySubDir
+            GetDirectoryName("C:\MyDir\MySubDir") returns C:\MyDir
+            GetDirectoryName("C:\MyDir\") returns C:\MyDir
+            GetDirectoryName("C:\MyDir") returns C:\
+            GetDirectoryName("C:\") returns NULL
+            */
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

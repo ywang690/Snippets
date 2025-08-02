@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>DirectoryInfo.Delete</Title>
+      <Shortcut>DirectoryInfo.Delete</Shortcut>
+      <Description>建立一個基本的DirectoryInfo.Delete</Description>
+      <Author>James Wang</Author>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[
+            public static void Main()
+            {
+                // Specify the directories you want to manipulate.
+                DirectoryInfo di1 = new DirectoryInfo(@"c:\MyDir");
+
+                try
+                {
+                    // Create the directories.
+                    di1.Create();
+                    di1.CreateSubdirectory("temp");
+
+                    //This operation will not be allowed because there are subdirectories.
+                    Console.WriteLine("I am about to attempt to delete {0}", di1.Name);
+                    di1.Delete();
+                    Console.WriteLine("The Delete operation was successful, which was unexpected.");
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("The Delete operation failed as expected.");
+                }
+                finally {}
+            }     
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

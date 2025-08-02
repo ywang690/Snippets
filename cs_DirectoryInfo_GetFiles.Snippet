@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>DirectoryInfo GetFiles</Title>
+      <Shortcut>DirectoryInfo GetFiles</Shortcut>
+      <Description>建立一個基本的 DirectoryInfo GetFiles</Description>
+      <Author>James Wang</Author>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[
+            DirectoryInfo di = new DirectoryInfo(@"D:\!Platform\AWS\CSGasgaugeNew\DP\repo_evsw_0702更新Jim的資料之前\CS_Gasgauge");
+            Console.WriteLine("No search pattern returns:");
+            foreach (var fi in di.GetFiles())
+            {
+                Console.WriteLine(fi.Name);
+            }
+
+            Console.WriteLine();
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

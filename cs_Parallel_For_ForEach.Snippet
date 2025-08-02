@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>loop-Parallel.For / Parallel.ForEach</Title>
+      <Shortcut>Parallel.For / Parallel.ForEachloop</Shortcut>
+      <Description>建立一個基本的Parallel.For / Parallel.ForEach迴圈</Description>
+      <Author>James Wang</Author>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[
+            //用途： 用途： 多執行緒平行處理，常用於需要加速處理的場景（需小心同步問題）。
+            Parallel.For(0, 5, i =>
+            {
+                Console.WriteLine($"Index: {i}");
+            });
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

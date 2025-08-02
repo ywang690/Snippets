@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>listbox_DrawItem</Title>
+      <Shortcut>listbox_DrawItem</Shortcut>
+      <Description>建立一個基本的 listbox_DrawItem</Description>
+      <Author>James Wang</Author>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[
+            try
+            {
+                if (e.Index >= 0)
+                {
+                    e.DrawBackground();
+                    Brush mybsh = Brushes.Black;
+                    Color bgColor = Color.White;   //背景色
+                    // 判斷是什麼類型的標籤
+                    if (lbStatus.Items[e.Index].ToString().IndexOf("0.07Log") != -1)
+                    {
+                        mybsh = Brushes.White;
+                        bgColor = Color.Green;
+                    }
+                    if (lbStatus.Items[e.Index].ToString().IndexOf("0.07Log") != -1)
+                    {
+                        mybsh = Brushes.Blue;
+                        bgColor = Color.Cyan;
+                    }
+                    else if (lbStatus.Items[e.Index].ToString().IndexOf("0.07Log") != -1)
+                    {
+                        mybsh = Brushes.White;
+                        bgColor = Color.Magenta;
+                    }
+                    e.Graphics.FillRectangle(new SolidBrush(bgColor), e.Bounds);//繪製背景
+                    // 焦點框
+                    e.DrawFocusRectangle();
+                    //文本 
+                    e.Graphics.DrawString(lbStatus.Items[e.Index].ToString(), e.Font, mybsh, e.Bounds, StringFormat.GenericDefault);
+                }
+            }
+            catch (InvalidCastException ErrorMessage)
+            {
+                Console.WriteLine("ErrorMesasage:{0}", ErrorMessage);
+            }
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Dict</Title>
+      <Shortcut>Dict</Shortcut>
+      <Description>建立一個基本的 Dict</Description>
+      <Author>James Wang</Author>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[
+            Dictionary<string, string> openWith =
+                new Dictionary<string, string>();
+
+            // Add some elements to the dictionary. There are no
+            // duplicate keys, but some of the values are duplicates.
+            openWith.Add("txt", "notepad.exe");
+            openWith.Add("bmp", "paint.exe");
+            openWith.Add("dib", "paint.exe");
+            openWith.Add("rtf", "wordpad.exe");
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

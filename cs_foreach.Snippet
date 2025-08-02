@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>foreach</Title>
+      <Shortcut>foreach</Shortcut>
+      <Description>Dynapack</Description>
+      <Author>James Wang</Author>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[
+            //Function: foreach, List      
+            List<int> fibNumbers = new() { 0, 1, 1, 2, 3, 5, 8, 13 };
+            foreach (int element in fibNumbers)
+            {
+                Console.Write($"{element} ");
+            }
+            // Output:
+            // 0 1 1 2 3 5 8 13        
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

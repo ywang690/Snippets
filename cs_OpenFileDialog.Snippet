@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>OpenFileDialog</Title>
+      <Shortcut>OpenFileDialog</Shortcut>
+      <Description>建立一個基本的 OpenFileDialog</Description>
+      <Author>James Wang</Author>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[
+            OpenFileDialog ofd = new OpenFileDialog();
+            int file_name_len = 0;
+            //ofd.FileName = "*.mot";
+            //ofd.Filter = "mot File(*.mot)|*.mot;*.flex |fix File(*.fix)|*.fix|flex File(*.flex)|*.flex|all File(*.*)|*.*";
+            ofd.Filter = "*.log|*.csv|*.err|(*.txt)";
+            ofd.FilterIndex = 1;
+            ofd.Multiselect = true;
+            ofd.RestoreDirectory = true;
+            ofd.CheckFileExists = true;
+            ofd.CheckPathExists = true;
+            if (ofd.ShowDialog() == DialogResult.OK)       
+            { 
+            }
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

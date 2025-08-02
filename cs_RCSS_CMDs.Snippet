@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>RCSS CMD</Title>
+      <Shortcut>RCSS CMD</Shortcut>
+      <Description>RCSS CMD</Description>
+      <Author>James Wang</Author>
+    </Header>
+    <Snippet>
+      <Code Language="csharp">
+        <![CDATA[
+            //用途： 至少執行一次，然後根據條件再決定是否繼續。        
+            lblFWPageStatus.Text = "Erasing";
+            lblFWPageStatus.BackColor = Color.Yellow;
+            this.button22.Enabled = false;
+            this.Refresh();
+            bool _result = false;
+            string _errorMessage = "";
+            byte[] iData = new byte[32];
+            for (int i = 0; i < 3; i++)
+            {
+                _result = _m_DPUSBHID.USB_SBData_WriteBlock_PEC(15, 0x5B, 4, new byte[] { 0xD8, 0x1D, 0x2E, 0x3F });
+                if (_result)
+                    break;
+                else
+                    System.Threading.Thread.Sleep(100);
+            }
+            System.Threading.Thread.Sleep(2000);
+            lblFWPageStatus.Text = "Checking Erase";
+            this.Refresh();
+            for (int i = 0; i < 3; i++)
+            {
+                _result = _m_DPUSBHID.USB_SBData_ReadWord(15, 0x52, ref iData);
+                if (_result)
+                    break;
+                else
+                    System.Threading.Thread.Sleep(100);
+            }
+            lblFWPageStatus.Text = "Move flash to EEProm";
+            _result = _gasgauge.SetGGMode("WRITEFLASHTOEEPROM", ref _errorMessage);
+            if (_result)
+            {
+                lblFWPageStatus.Text = "Success: Move flash to EEProm";
+                lblFWPageStatus.BackColor = Color.Green;
+            }
+            else
+            {
+                lblFWPageStatus.Text = "Fail: Move flash to EEProm";
+                lblFWPageStatus.BackColor = Color.Red;
+            }
+            if (_result)
+            {
+                lblFWPageStatus.Text = "Erased & EEProm updated";
+                lblFWPageStatus.BackColor = Color.Green;
+            }
+            else
+            {
+                lblFWPageStatus.Text = "fail to Erase";
+                lblFWPageStatus.BackColor = Color.Red;
+            }
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
